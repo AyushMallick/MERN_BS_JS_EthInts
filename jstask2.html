@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AyushM_JS_Task-2</title>
     <style>
       body {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
         height: 100vh;
         margin: 0;
@@ -16,13 +16,22 @@
     </style>
   </head>
   <body>
-    <h1 style="margin: 50px">String in sorted alphabetical order</h1>
-    <input type="text" id="inp" />
+    <h1 style="margin: 20px">String sorted with letters in alphabetical order</h1>
+    <input type="text" id="inp" style="width: 200px;" />
     <button type="button" onclick="alpha()" style="margin: 20px">Submit</button>
     <div>
-      Sorted letter string:
+      <h3>Sorted string: </h3>
       <section id="sorted"></section>
     </div>
-    <script src="./task2js.js"></script>
+    <script>
+      function alpha() {
+  let x = document.querySelector("#inp").value;
+  console.log(x);
+  let y = x.split("").sort().join("");
+  console.log(y);
+  document.querySelector("#sorted").innerHTML = y;
+}
+
+    </script>
   </body>
 </html>
