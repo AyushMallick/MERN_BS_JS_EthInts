@@ -7,129 +7,217 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<style>
-    .bg-light{
-        filter: brightness(95%);
+  <style>
+    .bg-light {
+      filter: brightness(95%);
     }
-    </style>
+    .error-text {
+      color: red;
+    }
+  </style>
+  <script>
+    $(document).ready(function() {
+      $("form").submit(function(e) {
+        e.preventDefault();
+        $(".error-text").remove();
+        let isValid = true;
+
+        
+        const firstName = $("#first-name").val().trim();
+        if (firstName === "") {
+          $("#first-name").after('<p class="error-text">Please enter your First Name</p>');
+          isValid = false;
+        }
+
+        
+        const lastName = $("#last-name").val().trim();
+        if (lastName === "") {
+          $("#last-name").after('<p class="error-text">Please enter your Last Name</p>');
+          isValid = false;
+        }
+
+        
+        const email = $("#email").val().trim();
+        if (email === "") {
+          $("#email").after('<p class="error-text">Please enter your Email Address</p>');
+          isValid = false;
+        } else if (!isValidEmail(email)) {
+          $("#email").after('<p class="error-text">Please enter a valid Email Address</p>');
+          isValid = false;
+        }
+
+        
+        const phone = $("#phone").val().trim();
+        if (phone === "") {
+          $("#phone").after('<p class="error-text">Please enter your Phone Number</p>');
+          isValid = false;
+        }
+
+        
+        const address = $("#address").val().trim();
+        if (address === "") {
+          $("#address").after('<p class="error-text">Please enter your Address</p>');
+          isValid = false;
+        }
+
+        
+        const city = $("#city").val().trim();
+        if (city === "") {
+          $("#city").after('<p class="error-text">Please enter your City</p>');
+          isValid = false;
+        }
+
+       
+        const state = $("#state").val().trim();
+        if (state === "") {
+          $("#state").after('<p class="error-text">Please select a State</p>');
+          isValid = false;
+        }
+
+       
+        const hosting = $("input[name='flexRadioDefault']:checked").val();
+        if (!hosting) {
+          $("#hosting-label").after('<p class="error-text">Please select whether you have hosting</p>');
+          isValid = false;
+        }
+
+        
+        const projectDescription = $("#project-description").val().trim();
+        if (projectDescription === "") {
+          $("#project-description").after('<p class="error-text">Please enter a Project Description</p>');
+          isValid = false;
+        }
+
+        if (isValid) {
+          alert("Form submitted successfully!");
+        }
+      });
+
+      function isValidEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailPattern.test(email);
+      }
+    });
+  </script>
+</head>
 <body>
+  <div class="container bg-light" style="max-width: 40%; margin-top: 10px;">
+    <form>
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>First Name</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="first-name" type="text" class="form-control" name="first-name" placeholder="First Name">
+        </div>
+      </div>
+      <br>
 
-<div class="container bg-light" style="max-width: 40%;margin-top: 10px;">
- 
-  
-  <form>
-    <div class="row">
-    <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>First Name</p>
-    <div class="col-md-8 col-sm-12 input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="email" type="text" class="form-control" name="email" placeholder="First Name">
-    </div>
-    </div>
-    <br>
-  
-
-    <div class="row">
+      
+      <div class="row">
         <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Last Name</p>
         <div class="col-md-8 col-sm-12 input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input id="email" type="text" class="form-control" name="email" placeholder="Last Name">
+          <input id="last-name" type="text" class="form-control" name="last-name" placeholder="Last Name">
         </div>
-        </div>
-        <br>
+      </div>
+      <br>
 
-        <div class="row">
-            <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>E-Mail</p>
-            <div class="col-md-8 col-sm-12 input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address">
-            </div>
-            </div>
-            <br>
-
-            <div class="row">
-                <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Phone#</p>
-                <div class="col-md-8 col-sm-12 input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                  <input id="email" type="tel" class="form-control" name="email" placeholder="(845)555-1212">
-                </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Address</p>
-                    <div class="col-md-8 col-sm-12 input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                      <input id="email" type="text" class="form-control" name="email" placeholder="Address">
-                    </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>City</p>
-                        <div class="col-md-8 col-sm-12 input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                          <input id="email" type="text" class="form-control" name="email" placeholder="City">
-                        </div>
-                        </div>
-                        <br>
-
-                        <div class="row">
-                            <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>State</p>
-                            <div class="col-md-8 col-sm-12 input-group">
-                              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                             
-                              <select class="form-control">
-                                <option value="">Select State
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                </option>
-                                
-                              </select>
-                            </div>
-                            </div>
-                            <br>
-                    <div class="row">
-                        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Do you have hosting?</p>
-                        <div class="col-md-8 col-sm-12 input-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                             No
-                            </label>
-                          </div>
-                        </div>
-                        </div>
-                        <br>
+      
       <div class="row">
-                    <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Project Description</p>
-                    <div class="col-md-8 col-sm-12 input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                      <!-- <input id="email" type="text" class="form-control" name="email" placeholder="Address"> -->
-                      <textarea class="form-control">Project Description</textarea>
-                    </div>
-                    </div>
-                    <br>
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>E-Mail</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address">
+        </div>
+      </div>
+      <br>
 
-                    <div class="row">
-                        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"></p>
-                    <div class="col-md-8 col-sm-12">
-                        <button type="button" class="btn btn-warning   text-dark "> Send
-                            <i class=" glyphicon glyphicon-send"></i>
-                        </button>
-                      </div>
-                      </div>
-                         
-  </form>
-</div>
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Phone#</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          <input id="phone" type="tel" class="form-control" name="phone" placeholder="(845)555-1212">
+        </div>
+      </div>
+      <br>
 
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Address</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <input id="address" type="text" class="form-control" name="address" placeholder="Address">
+        </div>
+      </div>
+      <br>
+
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>City</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <input id="city" type="text" class="form-control" name="city" placeholder="City">
+        </div>
+      </div>
+      <br>
+
+     
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>State</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select id="state" class="form-control" name="state">
+            <option value="">Select State</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+      <br>
+
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Do you have hosting?</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Yes">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="No">
+            <label class="form-check-label" for="flexRadioDefault2">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"><b>Project Description</p>
+        <div class="col-md-8 col-sm-12 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <textarea id="project-description" class="form-control" name="project-description">Project Description</textarea>
+        </div>
+      </div>
+      <br>
+
+      
+      <div class="row">
+        <p class="col-md-4 col-sm-12 h5" style="margin-top: 8px;"></p>
+        <div class="col-md-8 col-sm-12">
+          <button type="submit" class="btn btn-warning text-dark"> Send
+            <i class="glyphicon glyphicon-send"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
-
